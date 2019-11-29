@@ -38,21 +38,19 @@ public class Lambda_01_Test {
 
 		// TODO result ne doit contenir que des personnes adultes (age >= 18)
 
-		PersonPredicate predicate = new PersonPredicate() {
+		// PersonPredicate personPre = new PersonPredicate() {
+		//
+		// @Override
+		// public boolean test(Person p) {
+		// if (p.getAge() >= 18)
+		// return true;
+		// else
+		// return false;
+		// }
+		// };
+		PersonPredicate personPre = (p) -> p.getAge() >= 18;
 
-			@Override
-			public boolean test(Person p) {
-				// TODO Auto-generated method stub
-				if (p.getAge() >= 18)
-					return true;
-				else
-					return false;
-
-			}
-
-		};
-
-		List<Person> result = filter(personList, predicate);
+		List<Person> result = filter(personList, personPre);
 		assert result.size() == 83;
 
 		for (Person person : result) {
@@ -69,7 +67,20 @@ public class Lambda_01_Test {
 
 		// TODO result ne doit contenir que des personnes dont le prénom est
 		// "first_10"
-		List<Person> result = filter(personList, null);
+		
+//		PersonPredicate personPre2 = new PersonPredicate() {
+//			@Override
+//			public boolean test(Person p) {
+//				if (p.getFirstname() == "first_10")
+//					return true;
+//				else
+//					return false;
+//			}
+//		};
+
+		PersonPredicate personPre2 =(p) ->p.getFirstname() == "first_10";
+		
+		List<Person> result = filter(personList, personPre2);
 
 		assert result.size() == 1;
 		assert result.get(0).getFirstname().equals("first_10");
