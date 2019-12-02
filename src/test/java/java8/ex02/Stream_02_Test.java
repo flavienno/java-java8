@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.*;
@@ -18,14 +19,18 @@ import static org.junit.Assert.*;
  */
 public class Stream_02_Test {
 
-    @Test
-    public void test_map() throws Exception {
+	@Test
+	public void test_map() throws Exception {
 
-        List<Order> orders = new Data().getOrders();
+		List<Order> orders = new Data().getOrders();
 
-        // Trouver la liste des clients ayant déjà passés une commande
-        List<Customer> result = null;
+		// Trouver la liste des clients ayant déjà passés une commande
+		List<Customer> result1 = orders.stream().map(c -> c.getCustomer()).distinct().collect(Collectors.toList());
 
-        assertThat(result, hasSize(2));
-    }
+		// Deuxieme méthode avec des sets
+		Set<Customer> result = orders.stream().map(c -> c.getCustomer()).collect(Collectors.toSet());
+
+		assertThat(result, hasSize(2));
+		assertThat(result1, hasSize(2));
+	}
 }
