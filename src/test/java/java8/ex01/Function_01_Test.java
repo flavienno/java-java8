@@ -60,7 +60,6 @@ public class Function_01_Test {
 	//
 	// @Override
 	// public Account apply(Person person) {
-	// // TODO Auto-generated method stub
 	// return new Account(person, 1000);
 	// }
 	//
